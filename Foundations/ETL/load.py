@@ -1,12 +1,13 @@
 import logging
 import os
+from pathlib import Path
 from typing import Any
 
 import psycopg
 from dotenv import load_dotenv
 
 logger = logging.getLogger("etl.load")
-PROJECT_ROOT = __import__("pathlib").Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 load_dotenv(PROJECT_ROOT / ".env")
 
 
