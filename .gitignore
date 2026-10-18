@@ -218,3 +218,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local learning outputs and runtime secrets
+.env.*
+!.env.example
+Data/
+*.log
+*.log.*
