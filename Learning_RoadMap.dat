@@ -1,0 +1,128 @@
+Data Engineering Roadmap
+
+Phase 1 — Foundations
+
+Python for Data Engineering
+Files: CSV, JSON, Parquet
+Functions, OOP basics
+pandas
+Error handling & logging
+Virtual environments
+SQL
+JOINs
+CTEs
+Window functions
+Aggregations
+Query optimization
+Linux
+Bash
+Processes
+Permissions
+grep, awk, sed, curl
+Cron jobs
+Git/GitHub
+
+Phase 2 — Databases
+
+PostgreSQL
+MySQL
+Database design
+Normalization
+Indexes
+Transactions
+Views
+Query plans
+
+Phase 3 — ETL / ELT
+You'll learn to build pipelines like:
+
+API / CSV / Database
+        ↓
+     Extract
+        ↓
+   Python Pipeline
+        ↓
+   Transform/Clean
+        ↓
+      Storage
+        ↓
+   PostgreSQL / Data Warehouse
+
+Important concepts:
+
+ETL vs ELT
+Batch processing
+Incremental loading
+Data validation
+Data quality
+Idempotency
+
+Phase 4 — Big Data
+
+Apache Spark
+PySpark
+Partitioning
+Shuffling
+Distributed processing
+Spark SQL
+Performance optimization
+
+Phase 5 — Data Warehousing
+
+OLTP vs OLAP
+Star schema
+Fact & dimension tables
+Slowly Changing Dimensions
+Data marts
+BigQuery / Snowflake / Redshift concepts
+
+Phase 6 — Orchestration
+
+Apache Airflow
+DAGs
+Tasks
+Scheduling
+Retries
+Dependencies
+Monitoring
+
+Example:
+
+Every day 2 AM
+
+API
+ ↓
+Extract
+ ↓
+Validate
+ ↓
+Transform
+ ↓
+Load PostgreSQL
+ ↓
+Run Spark job
+ ↓
+Update warehouse
+ ↓
+Send success/failure alert
+
+Phase 7 — Cloud + Modern DE
+Pick one cloud first, rather than trying everything.
+
+I'd recommend:
+
+AWS
+ ├── S3
+ ├── IAM
+ ├── Glue
+ ├── Athena
+ ├── RDS
+ └── Redshift
+
+Then learn:
+
+Docker
+Kubernetes basics
+Kafka
+CI/CD
+Terraform basics
