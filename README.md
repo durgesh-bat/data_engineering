@@ -42,7 +42,6 @@ data_engineering/
 │   ├── 05_api_etl/
 │   ├── 06_sql_postgresql/
 │   └── 07_python_postgresql/
-├── Server/
 ├── projects/
 │   └── api_to_postgres_etl/
 └── sql/
