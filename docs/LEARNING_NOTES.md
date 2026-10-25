@@ -59,7 +59,7 @@ Covered:
 - Child loggers such as `etl.api` can propagate to the configured `etl` parent logger
 - Avoid attaching duplicate handlers repeatedly
 
-The current reusable setup is in `Foundations/ETL/logger_config.py`.
+The current reusable setup is in `projects/api_to_postgres_etl/logger_config.py`.
 
 ## ETL concepts
 
@@ -158,13 +158,13 @@ For a one-element tuple, the comma in `(102,)` is required. Do not quote the `%s
 - `executemany()` is not a replacement for PostgreSQL `COPY` for every high-volume workload; bulk loading will be studied separately
 
 ### Current scripts
-- `Foundations/ETL/db_connect.py`: test the connection
-- `Foundations/ETL/search_student.py`: safe parameterized search
-- `Foundations/ETL/insert_many_students.py`: multi-row insert with conflict-ignore
-- `Foundations/ETL/main.py`: end-to-end API-to-PostgreSQL ETL
-- `Foundations/ETL/extract.py`: API retry and pagination
-- `Foundations/ETL/transform.py`: normalization and validation
-- `Foundations/ETL/load.py`: transactional PostgreSQL UPSERT
+- `Foundations/07_python_postgresql/01_connection/db_connect.py`: test the connection
+- `Foundations/07_python_postgresql/03_parameterized_queries/search_student.py`: safe parameterized search
+- `Foundations/07_python_postgresql/04_writing/insert_many_students.py`: multi-row insert with conflict-ignore
+- `projects/api_to_postgres_etl/main.py`: end-to-end API-to-PostgreSQL ETL
+- `projects/api_to_postgres_etl/extract.py`: API retry and pagination
+- `projects/api_to_postgres_etl/transform.py`: normalization and validation
+- `projects/api_to_postgres_etl/load.py`: transactional PostgreSQL UPSERT
 
 ## Next lessons
 

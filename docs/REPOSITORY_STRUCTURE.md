@@ -1,26 +1,6 @@
-# Repository Structure and Future Organization
+# Repository Structure
 
-## Principle
-
-Organize by **learning topic first**, then by reusable project. Keep small, focused lessons separate from integrated pipelines. Every new program should have a short explanation, a stable run command, and a link from the catalogue.
-
-## Current structure
-
-The existing files are kept at their current paths for now to avoid breaking the user's local Debian working copy and older scripts that rely on relative imports/data paths.
-
-- `Foundations/*.py`: early Python practice programs
-- `Foundations/ETL/*.py`: PostgreSQL integration exercises plus the complete API-to-PostgreSQL ETL modules
-- `Foundations/Notes/`: lesson notes in Markdown and Word
-- `sql/`: database schema and index experiments
-- `Server/`: early API-user exercise
-- `SQL.txt`: quick SQL/JOIN recall sheet
-- `Learning_RoadMap.dat`: original roadmap source; the maintained roadmap is now `docs/ROADMAP.md`
-
-Use [FILE_CATALOG.md](FILE_CATALOG.md) to map the current file names to topics.
-
-## Target structure for a safe future migration
-
-This is the target design; it is **not yet the actual on-disk layout**.
+## Actual organized layout
 
 ```text
 data_engineering/
@@ -32,55 +12,57 @@ data_engineering/
 │   ├── FILE_CATALOG.md
 │   ├── REPOSITORY_STRUCTURE.md
 │   ├── LEARNING_NOTES.md
-│   └── lessons/
-├── foundations/
-│   ├── python/
-│   │   ├── basics/
-│   │   ├── files_csv_json/
-│   │   ├── validation_exceptions/
-│   │   ├── logging/
-│   │   └── api_pagination/
-│   ├── sql/
-│   └── postgres_integration/
-│       ├── connection_queries/
-│       ├── inserts_updates/
-│       ├── transactions_savepoints/
-│       └── retries_idempotency/
+│   ├── glossary.md
+│   └── archive/learning_roadmap_original.txt
+├── Foundations/
+│   ├── README.md
+│   ├── 00_overview/
+│   ├── 01_python_basics/
+│   ├── 02_files_csv_json/
+│   ├── 03_validation_exceptions/
+│   ├── 04_logging/
+│   ├── 05_api_etl/
+│   ├── 06_sql_postgresql/
+│   └── 07_python_postgresql/
+├── Server/
 ├── projects/
 │   └── api_to_postgres_etl/
-│       ├── main.py
-│       ├── extract.py
-│       ├── transform.py
-│       ├── load.py
-│       ├── logger_config.py
-│       └── tests/
-├── sql/
-│   ├── schema/
-│   └── labs/
-├── data/
-│   ├── sample/       # small fake/sanitized data only
-│   └── output/       # ignored by Git
-└── tests/
+└── sql/
+    ├── 01_schema.sql
+    └── 02_index_lab.sql
 ```
 
-## Rules for future additions
+## Folder responsibilities
 
-1. **One file, one learning purpose.** For example, keep CSV reading and PostgreSQL connections in separate small exercises.
-2. **Preserve runnable examples.** Document the exact command and expected input files in the file catalogue.
-3. **Avoid import side effects.** Put executable demo code under `if __name__ == "__main__":`.
-4. **Use stable paths.** Resolve source/data paths from `Path(__file__)` rather than relying on whichever directory the shell is currently in.
-5. **Separate exercises from projects.** A demo is a foundation exercise; a project orchestrates multiple modules.
-6. **Keep secrets out of Git.** Commit `.env.example`, never real `.env`.
-7. **Add tests as behavior becomes stable.** Begin with validators and pure transformation functions, then database integration tests.
-8. **Update documentation as part of every change.** Include the program in `FILE_CATALOG.md`, note progress in `ROADMAP.md`, and update the README if the entry point changes.
-9. **Prefer small commits.** One focused topic or one path migration per commit makes reviewing and rollback easier.
-10. **Migrate paths only after checking imports.** The old scripts include imports such as `from logger import logger` and relative data paths; moving them without updating those details will break them.
+- `Foundations/00_overview/`: first principles and vocabulary.
+- `Foundations/01_python_basics/`: core syntax, collections, small functions.
+- `Foundations/02_files_csv_json/`: files and common data formats.
+- `Foundations/03_validation_exceptions/`: validators and exception handling.
+- `Foundations/04_logging/`: logging concepts and reusable example.
+- `Foundations/05_api_etl/`: small API and ETL exercises.
+- `Foundations/06_sql_postgresql/`: SQL recall sheets and learning progress.
+- `Foundations/07_python_postgresql/`: progressively harder Psycopg lessons.
+- `projects/`: complete, multi-module pipelines.
+- `sql/`: reproducible schemas and database experiments.
+- `docs/`: roadmap, catalogue, general notes, and glossary.
 
-## Migration order
+## Future rules
 
-1. Finish and stabilize the Python/PostgreSQL integration lessons.
-2. Add tests/guards/path fixes to older Python exercises.
-3. Move pure Python examples into topic folders.
-4. Move PostgreSQL labs into dedicated topic folders.
-5. Move the integrated ETL into `projects/api_to_postgres_etl/`.
-6. Update run commands, then verify from a fresh clone on Debian.
+1. Keep one-topic exercises in the matching Foundation folder.
+2. Put integrated pipelines under `projects/<project_name>/`.
+3. Keep secrets in local `.env` only; commit just `.env.example`.
+4. Store generated files/logs under the ignored `Data/` directory.
+5. Add new programs to `docs/FILE_CATALOG.md`.
+6. Update `docs/ROADMAP.md` after each lesson.
+7. Avoid import-time side effects; put demo execution under `if __name__ == "__main__":`.
+8. Prefer `Path(__file__)` for paths so programs behave consistently when run from the repository root.
+9. Move/rename files only after updating imports and checking the program can run from a fresh clone.
+
+## Future additions (when needed)
+
+- `tests/`: unit and integration tests.
+- `data/sample/`: small, sanitized input datasets safe to commit.
+- `projects/<name>/tests/`: tests for an integrated project.
+- `docs/lessons/`: long-form handouts.
+
+Do not create folders until there is a real use for them; keep the repository understandable.
